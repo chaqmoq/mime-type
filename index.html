@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html"> Reference</a>
+      <img class="carat" src="img/carat.png" />
+        Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/MIME.html">MIME</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <h1 id='mime-component' class='heading'>MIME component</h1>
+
+<p><a href="https://swift.org/download/#releases"><img src="https://img.shields.io/badge/swift-5.3-brightgreen.svg" alt="Swift"></a> <a href="https://github.com/chaqmoq/mime/blob/master/LICENSE/"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License"></a> <a href="https://github.com/chaqmoq/mime/actions"><img src="https://github.com/chaqmoq/mime/workflows/development/badge.svg" alt="Actions Status"></a> <a href="https://www.codacy.com/gh/chaqmoq/mime?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chaqmoq/mime&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/8db2563aade54b95afdefa13fbe8dbb7" alt="Codacy Badge"></a> <a href="https://codecov.io/gh/chaqmoq/mime"><img src="https://codecov.io/gh/chaqmoq/mime/branch/master/graph/badge.svg?token=OamloHEVvh" alt="codecov"></a> <a href="https://github.com/chaqmoq/mime/blob/master/CONTRIBUTING.md"><img src="https://img.shields.io/badge/contributing-guide-brightgreen.svg" alt="Contributing"></a> <a href="https://twitter.com/chaqmoqdev"><img src="https://img.shields.io/badge/twitter-chaqmoqdev-brightgreen.svg" alt="Twitter"></a></p>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='swift' class='heading'>Swift</h3>
+
+<p>Download and install <a href="https://swift.org/download">Swift</a></p>
+<h3 id='swift-package' class='heading'>Swift Package</h3>
+<pre class="highlight shell"><code>mkdir MyApp
+<span class="nb">cd </span>MyApp
+swift package init --type executable // Creates an executable app named <span class="s2">"MyApp"</span>
+</code></pre>
+<h4 id='package-swift' class='heading'>Package.swift</h4>
+<pre class="highlight swift"><code><span class="c1">// swift-tools-version:5.3</span>
+
+<span class="kd">import</span> <span class="kt">PackageDescription</span>
+
+<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"MyApp"</span><span class="p">,</span>
+    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"chaqmoq-mime"</span><span class="p">,</span> <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/chaqmoq/mime.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"1.1.1"</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="nv">targets</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="nf">target</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"MyApp"</span><span class="p">,</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+            <span class="o">.</span><span class="nf">product</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"MIME"</span><span class="p">,</span> <span class="nv">package</span><span class="p">:</span> <span class="s">"chaqmoq-mime"</span><span class="p">),</span>
+        <span class="p">]),</span>
+        <span class="o">.</span><span class="nf">testTarget</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"MyAppTests"</span><span class="p">,</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+            <span class="o">.</span><span class="nf">target</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"MyApp"</span><span class="p">)</span>
+        <span class="p">])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre>
+<h3 id='build' class='heading'>Build</h3>
+<pre class="highlight shell"><code>swift build -c release
+</code></pre>
+<h2 id='usage' class='heading'>Usage</h2>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">MIME</span>
+
+<span class="k">var</span> <span class="nv">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "application/octet-stream"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// nil</span>
+
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="s">"text"</span><span class="p">,</span> <span class="nv">subtype</span><span class="p">:</span> <span class="s">"html"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "text/html"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "html"</span>
+
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="p">(</span><span class="s">"application/java-archive"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "application/java-archive"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "jar"</span>
+
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="p">(</span><span class="s">"application/java-archive"</span><span class="p">,</span> <span class="nv">ext</span><span class="p">:</span> <span class="s">"war"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "application/java-archive"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "war"</span>
+
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="p">(</span><span class="nv">ext</span><span class="p">:</span> <span class="s">"css"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "text/css"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "css"</span>
+
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="s">"/public/js/main.js"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "text/javascript"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "js"</span>
+
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://chaqmoq.dev/public/img/logo.png"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "image/png"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "png"</span>
+
+<span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="kt">Data</span><span class="p">([</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xD8</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="o">.</span><span class="nf">guess</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "image/jpeg"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "jpg"</span>
+
+<span class="k">let</span> <span class="nv">bytes</span><span class="p">:</span> <span class="p">[</span><span class="kt">UInt8</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x47</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0x46</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">mime</span> <span class="o">=</span> <span class="kt">MIME</span><span class="o">.</span><span class="nf">guess</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="c1">// "image/gif"</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mime</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span> <span class="c1">// "gif"</span>
+</code></pre>
+<h2 id='tests' class='heading'>Tests</h2>
+<pre class="highlight shell"><code>swift <span class="nb">test</span> --enable-test-discovery --sanitize<span class="o">=</span>thread
+</code></pre>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-07-17)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
